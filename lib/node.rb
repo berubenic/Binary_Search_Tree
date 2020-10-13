@@ -13,6 +13,6 @@ class Node
   end
 
   def <=>(other)
-    node.value <=> other.value
+    value <=> other.value
   end
 end
