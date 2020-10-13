@@ -15,4 +15,8 @@ class Node
   def <=>(other)
     value <=> other.value
   end
+
+  def inspect
+    "Value: #{value} - Left Node: #{left.value} - Right Node: #{right.value}"
+  end
 end
