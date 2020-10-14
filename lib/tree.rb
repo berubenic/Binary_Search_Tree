@@ -52,8 +52,24 @@ class Tree
     return if root.nil?
 
     inorder(root.left)
-    print root.value
+    print "#{root.value} "
     inorder(root.right)
+  end
+
+  def preorder(root = @root)
+    return if root.nil?
+
+    print "#{root.value} "
+    preorder(root.left)
+    preorder(root.right)
+  end
+
+  def postorder(root = @root)
+    return if root.nil?
+
+    postorder(root.left)
+    postorder(root.right)
+    print "#{root.value} "
   end
 
   def level_order(root = @root)

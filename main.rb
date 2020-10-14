@@ -17,6 +17,10 @@ tree1.pretty_print
 
 tree1.inorder
 puts "\n"
+tree1.preorder
+puts "\n"
+tree1.postorder
+puts "\n"
 p tree1.min_value_node
 
 tree1.delete_node(8)
