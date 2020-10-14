@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'pry'
+
+# Tree class
 class Tree
   attr_reader :root
 
@@ -15,6 +18,32 @@ class Tree
     root = Node.new(arr[mid])
     root.left = build_tree(arr, start, mid - 1)
     root.right = build_tree(arr, mid + 1, last)
+
+    root
+  end
+
+  def find(key, root = @root)
+    return nil if root.nil?
+
+    return root if root.value == key
+
+    if root.value < key
+      find(key, root.right)
+    else
+      find(key, root.left)
+    end
+  end
+
+  def insert(key, root = @root)
+    return Node.new(key) if root.nil?
+
+    return root if root.value == key
+
+    if root.value < key
+      root.right = insert(key, root.right)
+    else
+      root.left = insert(key, root.left)
+    end
 
     root
   end

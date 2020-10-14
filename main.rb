@@ -3,12 +3,18 @@
 require_relative 'lib/node'
 require_relative 'lib/tree'
 
-tree_1 = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+tree1 = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 
-tree_1.pretty_print
+tree1.pretty_print
 
-p tree_1.root
+puts tree1.find(7)
 
-tree_2 = Tree.new([1, 2, 3, 4, 5, 6, 7, 8, 9])
+tree1.insert(0)
 
-tree_2.pretty_print
+tree1.insert(5000)
+
+tree1.pretty_print
+
+tree1.inorder
+
+p tree1.min_value_node
