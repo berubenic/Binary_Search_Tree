@@ -56,11 +56,50 @@ class Tree
     inorder(root.right)
   end
 
+  def level_order(root = @root)
+    result = []
+    return result if root.nil?
+
+    queue = []
+    queue << root
+
+    until queue.empty?
+      level_size = queue.length
+      level = []
+      level_size.times do
+        node = queue.shift
+        level << node.value
+        queue << node.left unless node.left.nil?
+        queue << node.right unless node.right.nil?
+      end
+      result << level
+    end
+
+    result.flatten
+  end
+
   def min_value_node(root = @root)
     current = root
 
     current = current.left until current.left.nil?
-    current
+    current.value
+  end
+
+  def delete_node(key, root = @root)
+    return if root.nil?
+
+    if key < root.value
+      root.left = delete_node(key, root.left)
+    elsif key > root.value
+      root.right = delete_node(key, root.right)
+    else
+      return root.right if root.left.nil?
+      return root.left if root.right.nil?
+
+      root.value = min_value_node(root.right)
+      root.right = delete_node(root.value, root.right)
+    end
+    root
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true)
