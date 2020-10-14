@@ -48,6 +48,21 @@ class Tree
     root
   end
 
+  def inorder(root = @root)
+    return if root.nil?
+
+    inorder(root.left)
+    print root.value
+    inorder(root.right)
+  end
+
+  def min_value_node(root = @root)
+    current = root
+
+    current = current.left until current.left.nil?
+    current
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
