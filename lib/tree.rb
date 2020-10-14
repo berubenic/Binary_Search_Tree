@@ -78,6 +78,16 @@ class Tree
     result.flatten
   end
 
+  def rec_level_order(root = @root, result = [], level = 0)
+    return result.flatten unless root
+
+    result << [] if result.length == level
+
+    result[level] << root.value
+    rec_level_order(root.left, result, level + 1)
+    rec_level_order(root.right, result, level + 1)
+  end
+
   def min_value_node(root = @root)
     current = root
 

@@ -24,3 +24,5 @@ tree1.delete_node(8)
 tree1.pretty_print
 
 p tree1.level_order
+
+p tree1.rec_level_order
