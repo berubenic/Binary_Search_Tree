@@ -94,17 +94,31 @@ class Tree
   end
 
   def find_depth(node, root = @root, count = 0)
-    # if node == root, return 0
     return count if node.value == root.value
 
-    # if node < root, root = root.left, count + 1, until root == node
     root = if node.value < root.value
              root.left
            else
              root.right
            end
     find_depth(node, root, count + 1)
-    # if node > root, root = root.right, count + 1, until root == node
+  end
+
+  def balanced?
+    difference = find_difference
+    return false if difference > 1
+
+    true
+  end
+
+  def find_difference(left = height(@root.left), right = height(@root.right))
+    if left < right
+      right - left
+    elsif left > right
+      left - right
+    else
+      0
+    end
   end
 
   def level_order(root = @root)
@@ -143,7 +157,7 @@ class Tree
     current = root
 
     current = current.left until current.left.nil?
-    current.value
+    current
   end
 
   def delete_node(key, root = @root)
@@ -157,10 +171,15 @@ class Tree
       return root.right if root.left.nil?
       return root.left if root.right.nil?
 
-      root.value = min_value_node(root.right)
+      root.value = min_value_node(root.right).value
       root.right = delete_node(root.value, root.right)
     end
     root
+  end
+
+  def rebalance
+    arr = level_order
+    @root = build_tree(arr)
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true)

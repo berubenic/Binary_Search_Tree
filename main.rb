@@ -3,36 +3,35 @@
 require_relative 'lib/node'
 require_relative 'lib/tree'
 
-tree1 = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+tree = Tree.new([29, 19, 12, 9, 15, 24, 22, 27, 54, 39, 34, 41, 67, 62, 92])
 
-tree1.pretty_print
+tree.pretty_print
 
-p tree1.find(7)
+puts tree.balanced?
 
-tree1.insert(0)
+puts tree.preorder
+puts tree.postorder
+puts tree.inorder
 
-tree1.insert(5000)
+# unbalance tree
 
-tree1.pretty_print
+tree.insert(101)
+tree.insert(102)
+tree.insert(103)
+tree.insert(104)
+tree.insert(105)
+tree.insert(106)
 
-tree1.inorder
-puts "\n"
-tree1.preorder
-puts "\n"
-tree1.postorder
-puts "\n"
-p tree1.min_value_node
+tree.pretty_print
 
-tree1.delete_node(8)
+puts tree.balanced?
 
-tree1.pretty_print
+# rebalance tree
+tree.rebalance
+tree.pretty_print
 
-p tree1.level_order
+puts tree.balanced?
 
-p tree1.rec_level_order
-
-p tree1.height(9)
-
-p tree1.depth(5001)
-
-p tree1.depth(324)
+puts tree.preorder
+puts tree.postorder
+puts tree.inorder
