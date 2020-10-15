@@ -30,3 +30,5 @@ tree1.pretty_print
 p tree1.level_order
 
 p tree1.rec_level_order
+
+p tree1.height

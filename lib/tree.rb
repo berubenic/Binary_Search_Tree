@@ -72,6 +72,14 @@ class Tree
     print "#{root.value} "
   end
 
+  def height(root = @root)
+    return -1 if root.nil?
+
+    left = height(root.left)
+    right = height(root.right)
+    left < right ? right + 1 : left + 1
+  end
+
   def level_order(root = @root)
     result = []
     return result if root.nil?
