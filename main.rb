@@ -31,4 +31,6 @@ p tree1.level_order
 
 p tree1.rec_level_order
 
-p tree1.height
+p tree1.height(9)
+
+p tree1.depth(9)

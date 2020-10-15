@@ -72,12 +72,28 @@ class Tree
     print "#{root.value} "
   end
 
-  def height(root = @root)
-    return -1 if root.nil?
+  def height(node)
+    node = find(node) unless node.instance_of? Node
 
-    left = height(root.left)
-    right = height(root.right)
+    find_height(node)
+  end
+
+  def find_height(node)
+    return -1 if node.nil?
+
+    left = find_height(node.left)
+    right = find_height(node.right)
     left < right ? right + 1 : left + 1
+  end
+
+  def depth(node)
+    node = find(node) unless node.instance_of? Node
+
+    find_depth(node)
+  end
+
+  def find_depth(node, _count = 0)
+    return 0 if node.value == @root.value
   end
 
   def level_order(root = @root)
