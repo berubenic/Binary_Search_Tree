@@ -33,4 +33,6 @@ p tree1.rec_level_order
 
 p tree1.height(9)
 
-p tree1.depth(9)
+p tree1.depth(5001)
+
+p tree1.depth(324)

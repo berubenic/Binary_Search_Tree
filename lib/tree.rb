@@ -88,12 +88,23 @@ class Tree
 
   def depth(node)
     node = find(node) unless node.instance_of? Node
+    return -1 if node.nil?
 
     find_depth(node)
   end
 
-  def find_depth(node, _count = 0)
-    return 0 if node.value == @root.value
+  def find_depth(node, root = @root, count = 0)
+    # if node == root, return 0
+    return count if node.value == root.value
+
+    # if node < root, root = root.left, count + 1, until root == node
+    root = if node.value < root.value
+             root.left
+           else
+             root.right
+           end
+    find_depth(node, root, count + 1)
+    # if node > root, root = root.right, count + 1, until root == node
   end
 
   def level_order(root = @root)
